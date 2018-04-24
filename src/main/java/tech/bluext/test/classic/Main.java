@@ -18,9 +18,9 @@ public class Main {
     public static void main(String[] args) {
         Lock lock = new ReentrantLock();
 
-        Thread t1 = new Thread(new Task(lock));
-        Thread t2 = new Thread(new Task(lock));
-        Thread t3 = new Thread(new Task(lock));
+        Thread t1 = new Thread(new TaskThread(lock));
+        Thread t2 = new Thread(new TaskThread(lock));
+        Thread t3 = new Thread(new TaskThread(lock));
 
         t1.setName("t1");
         t2.setName("t2");

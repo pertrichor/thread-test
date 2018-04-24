@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import java.util.concurrent.CountDownLatch;
 
 /**
- * Description：
+ * Description：任务线程
  *
  * @author : xutao
  *         Created_Date : 2018-04-23 14:11

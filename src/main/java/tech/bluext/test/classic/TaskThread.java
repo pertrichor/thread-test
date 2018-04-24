@@ -3,17 +3,17 @@ package tech.bluext.test.classic;
 import java.util.concurrent.locks.Lock;
 
 /**
- * Description：任务体
+ * Description：任务线程
  *
  * @author : xutao
  *         Created_Date : 2018-04-23 13:36
  */
-public class Task implements Runnable {
+public class TaskThread implements Runnable {
 
     private int CNT = 100000;
     private Lock lock;
 
-    public Task(Lock lock) {
+    public TaskThread(Lock lock) {
         this.lock = lock;
     }
 

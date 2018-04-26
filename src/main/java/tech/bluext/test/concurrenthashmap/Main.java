@@ -23,6 +23,9 @@ import java.util.concurrent.CountDownLatch;
  * 3. 多线程时 , 线程数量的大小影响不大 , 当使用单线程测试 , 反而暴露了ConcurrentHashMap中实现更复杂的弊端 , ConcurrentHashMap耗时最高.
  * <p>
  * 4. 在key值离散率高的并发环境下使用ConcurrentHashMap. 在key值离散率低的并发环境下使用SynchronizedMap.
+ * <p>
+ * 5. 使用happens-before原则分析ConcurrentHashMap的put()和get() , 由于get()没有锁 , 无法得出连贯的hb传递关系 , 所以当多线程同时
+ * 调用put()和get() , get()可能得不到put()的新值. 同理 , clear() 和 迭代器的实现都体现了ConcurrentHashMap的弱一致性.这是效率和安全的权衡结果.
  *
  * @author : xutao
  *         Created_Date : 2018-04-24 14:56

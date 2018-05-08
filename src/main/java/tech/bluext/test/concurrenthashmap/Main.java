@@ -12,11 +12,11 @@ import java.util.concurrent.CountDownLatch;
  * 这导致ConcurrentHashMap中进行put()操作中 , 只锁一段key , 其他锁依然可以被其他线程获取 , 从而得到更高的效率.<br/>
  * <p>
  * ps: 因为Map的结构是根据hash值分成多个桶 , 每个桶包含一个链表结构 , 当哈希值不同时 , 直接存储 ; <br/>
- * 当哈希值不同时 , 判断equals()方法结果 , 若equals()返回false , 则储存在链表中. 所以每个桶的操作其实是相对独立的.<br/>
- * 因此分段锁不会引起线程问题.
+ * 当哈希值相同时 , 判断equals()方法结果 , 若equals()返回false , 则储存在链表中. <br/>
+ * 所以每个桶的操作其实是相对独立的. 因此分段锁不会引起线程问题.
  * <p>
  * 2. 测试结果的对比 , 并非所有情况下 , ConcurrentHashMap的性能都拥有最佳性能.<br/>
- * 当key值范围较小时 , 如<1000时 , 三者的性能差距很小 , 甚至ConcurrentHashMap的性能要低于SynchronizedMap和Hashtable.<br/>
+ * 当key值范围较小时 , 如<100时 , 三者的性能差距很小 , 甚至ConcurrentHashMap的性能要低于SynchronizedMap和Hashtable.<br/>
  * 当key值范围较大时 , 如>100000 , ConcurrentHashMap的性能远超SynchronizedMap和Hashtable.<br/>
  * 总得来说 , 耗时 ConcurrentHashMap < SynchronizedMap < Hashtable
  * <p>
